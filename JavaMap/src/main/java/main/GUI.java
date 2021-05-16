@@ -1,6 +1,5 @@
 package main;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -11,6 +10,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.io.PrintStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +21,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.UIManager;
@@ -178,11 +180,46 @@ public class GUI implements ActionListener, ItemListener {
 
 		frame.add(topCom, frameCon);
 		
+		//adds frame with tabbed outputs
+		JPanel tabPanel = new JPanel();
+		tabPanel.setLayout(new GridBagLayout());
 		
-
+		JTabbedPane tabpane = new JTabbedPane();
 		
-
-
+		//adds hosts list
+		
+		//adds output pane
+		JPanel output = new JPanel();
+		output.setLayout(new GridBagLayout());
+		
+		JTextArea textOutput = new JTextArea();
+		PrintStream printStream = new PrintStream(new CustomOutputStream(textOutput));
+		System.setOut(printStream);
+		System.setErr(printStream);
+		con.fill = GridBagConstraints.HORIZONTAL;
+		con.insets = new Insets(0, 0, 0, 0);
+		con.weightx = 1;
+		con.weighty = 1;
+		con.gridx = 1;
+		con.gridy = 0;
+		output.add(textOutput, con);
+		
+		tabpane.add("Jmap output", output);
+		
+		tabPanel.add(tabpane);
+		
+		
+		
+		frameCon.fill = GridBagConstraints.HORIZONTAL;
+		frameCon.insets = new Insets(0,0,0,0);
+		frameCon.weightx = 1;
+		frameCon.weighty = 1;
+		frameCon.gridx = 0;
+		frameCon.gridy = 1;
+		
+		frame.add(tabPanel, frameCon);
+		
+		
 	}
 
 	public void GUIview() {
