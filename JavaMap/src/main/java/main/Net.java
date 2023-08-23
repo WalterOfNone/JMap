@@ -1,13 +1,10 @@
 package main;
 
-//I am suing whoever created this many packages for me to misutilize
-//TODO: FIX THE FUTURES PORT BEFORE ANYTHING ELSE
+//TODO: FIX THE FUTURES PORT
 //Add other service probes
 //Add OS detection
 //Add cli intepreter for methods
-//slap gui interface on it
-//add export options
-//Branding
+//Add export options
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
